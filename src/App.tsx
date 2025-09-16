@@ -1,5 +1,5 @@
 import "@bcgov/bc-sans/css/BCSans.css";
-import { ChartBarIcon, InformationCircleIcon, RefreshIcon, CogIcon } from "@heroicons/react/outline";
+import { ChartBarIcon, CogIcon, InformationCircleIcon, RefreshIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import type { WithTranslation } from "react-i18next";
 import { withTranslation } from "react-i18next";
@@ -19,8 +19,8 @@ import {
   saveSeedToLocalStorage,
 } from "./lib/localStorage";
 import { addStatsForCompletedGame, loadStats } from "./lib/stats";
-import { useWords } from "./lib/words";
 import { useTheme } from "./lib/theme";
+import { useWords } from "./lib/words";
 
 const ALERT_TIME_MS = 1000;
 
@@ -39,7 +39,7 @@ const App: React.FC<WithTranslation> = ({ t }) => {
   const wordLength = solution.length;
   const [currentGuess, setCurrentGuess] = useState<Array<string>>([]);
   const [isGameWon, setIsGameWon] = useState(false);
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false);
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
@@ -142,9 +142,7 @@ const App: React.FC<WithTranslation> = ({ t }) => {
   };
   let translateElement = <div></div>;
   if (availableLanguages.length > 1) {
-    translateElement = (
-      <CogIcon className="h-6 w-6 cursor-pointer mr-2" onClick={() => setIsI18nModalOpen(true)} />
-    );
+    translateElement = <CogIcon className="h-6 w-6 cursor-pointer mr-2" onClick={() => setIsI18nModalOpen(true)} />;
   }
 
   return (
@@ -158,10 +156,7 @@ const App: React.FC<WithTranslation> = ({ t }) => {
       </div>
       <Grid solution={solution} wordLength={wordLength} guesses={guesses} currentGuess={currentGuess} />
       <Keyboard solution={solution} onChar={onChar} onDelete={onDelete} onEnter={onEnter} guesses={guesses} />
-      <SettingsModal
-        isOpen={isI18nModalOpen}
-        handleClose={() => setIsI18nModalOpen(false)}
-      />
+      <SettingsModal isOpen={isI18nModalOpen} handleClose={() => setIsI18nModalOpen(false)} />
       <InfoModal isOpen={isInfoModalOpen} handleClose={() => setIsInfoModalOpen(false)} />
       <StatsModal
         solution={solution}

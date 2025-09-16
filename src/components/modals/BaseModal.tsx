@@ -31,7 +31,10 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div onClick={() => handleClose()} className="fixed bg-background/50 inset-0 backdrop-blur-xs transition-opacity" />
+            <div
+              onClick={() => handleClose()}
+              className="fixed bg-background/50 inset-0 backdrop-blur-xs transition-opacity"
+            />
           </TransitionChild>
 
           {/* This element is to trick the browser into centering the modal contents. */}

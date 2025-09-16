@@ -1,9 +1,9 @@
 import { Field, Label, Select, Switch } from "@headlessui/react";
+import type { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { availableLanguages, localeLanguageKey } from "../../i18n/i18n";
-import { BaseModal } from "./BaseModal";
 import { useTheme } from "../../lib/theme";
-import type { ChangeEvent } from "react";
+import { BaseModal } from "./BaseModal";
 
 type Props = {
   isOpen: boolean;
@@ -36,7 +36,9 @@ export const SettingsModal = ({ isOpen, handleClose }: Props) => {
         <Label className="flex flex-1">{t("pickYourLanguage")}</Label>
         <Select onChange={onChangeValue} name="status" className="rounded-md p-1 bg-neutral">
           {availableLanguages.map((code) => (
-            <option key={code} value={code}>{t(`languages.${code}`)}</option>
+            <option key={code} value={code}>
+              {t(`languages.${code}`)}
+            </option>
           ))}
         </Select>
       </Field>

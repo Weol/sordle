@@ -2,7 +2,6 @@ import Countdown from "react-countdown";
 import { useTranslation } from "react-i18next";
 import { CONFIG } from "../../constants/config";
 import type { GameStats } from "../../lib/localStorage";
-import { shareStatus } from "../../lib/share";
 import { Histogram } from "../stats/Histogram";
 import { StatBar } from "../stats/StatBar";
 import { BaseModal } from "./BaseModal";

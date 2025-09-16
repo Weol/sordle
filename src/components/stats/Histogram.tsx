@@ -12,7 +12,7 @@ export const Histogram = ({ gameStats }: Props) => {
   return (
     <div className="columns-1 justify-left m-2 text-sm">
       {winDistribution.map((value, i) => (
-        <Progress key={i} index={i} size={(value / maxValue)} label={String(value)} />
+        <Progress key={i} index={i} size={value / maxValue} label={String(value)} />
       ))}
     </div>
   );
