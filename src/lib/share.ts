@@ -1,38 +1,42 @@
-import { getGuessStatuses } from './statuses'
-import { solutionIndex } from './words'
-import { CONFIG } from '../constants/config'
+import { CONFIG } from "../constants/config";
+import { getGuessStatuses } from "./statuses";
 
-export const shareStatus = (guesses: string[][], lost: boolean) => {
+export const shareStatus = (
+  gameName: string,
+  solution: string,
+  solutionIndex: number,
+  guesses: string[][],
+  lost: boolean,
+) => {
   navigator.clipboard.writeText(
-    CONFIG.language +
-      solutionIndex +
-      ' ' +
-      `${lost ? 'X' : guesses.length}` +
-      '/' +
+    gameName +
+      " " +
+      `${lost ? "X" : guesses.length}` +
+      "/" +
       CONFIG.tries.toString() +
-      '\n\n' +
-      generateEmojiGrid(guesses) +
-      '\n\n' +
-      window.location.href.replace(`${window.location.protocol}//`, '')
-  )
-}
+      "\n\n" +
+      generateEmojiGrid(solution, guesses) +
+      "\n\n" +
+      window.location.href.replace(`${window.location.protocol}//`, ""),
+  );
+};
 
-export const generateEmojiGrid = (guesses: string[][]) => {
+export const generateEmojiGrid = (solution: string, guesses: string[][]) => {
   return guesses
     .map((guess) => {
-      const status = getGuessStatuses(guess)
+      const status = getGuessStatuses(solution, guess);
       return guess
-        .map((letter, i) => {
+        .map((_, i) => {
           switch (status[i]) {
-            case 'correct':
-              return '🟩'
-            case 'present':
-              return '🟨'
+            case "correct":
+              return "🟩";
+            case "present":
+              return "🟨";
             default:
-              return '⬜'
+              return "⬜";
           }
         })
-        .join('')
+        .join("");
     })
-    .join('\n')
-}
+    .join("\n");
+};

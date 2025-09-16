@@ -1,71 +1,44 @@
 {
-    "name": "any-language-word-guessing-game",
-    "version": "0.1.0",
-    "homepage": "https://roedoejet.github.io/AnyLanguage-Word-Guessing-Game",
-    "private": true,
-    "dependencies": {
-        "@bcgov/bc-sans": "^1.0.1",
-        "@headlessui/react": "^1.4.2",
-        "@heroicons/react": "^1.0.5",
-        "@testing-library/jest-dom": "^5.16.1",
-        "@testing-library/react": "^12.1.2",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.4.0",
-        "@types/node": "^16.11.19",
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.11",
-        "classnames": "^2.3.1",
-        "i18next": "^21.6.11",
-        "i18next-browser-languagedetector": "^6.1.3",
-        "i18next-http-backend": "^1.3.2",
-        "react": "^17.0.2",
-        "react-countdown": "^2.3.2",
-        "react-dom": "^17.0.2",
-        "react-ga": "^3.3.0",
-        "react-i18next": "^11.15.4",
-        "react-scripts": "5.0.0",
-        "typescript": "^4.5.4",
-        "web-vitals": "^2.1.3"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
-        "fix": "prettier --write src",
-        "lint": "prettier --check src",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "prepare": "husky install"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "autoprefixer": "^10.4.2",
-        "gh-pages": "^3.2.3",
-        "husky": "^7.0.4",
-        "lint-staged": "12.3.2",
-        "postcss": "^8.4.5",
-        "prettier": "^2.5.1",
-        "tailwindcss": "^3.0.12"
-    },
-    "lint-staged": {
-        "src/*.{ts,tsx,js,jsx,css,md}": "prettier --write"
-    }
+  "name": "sordle",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && npm run lint && npm run prettier && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "prettier-write": "prettier . --write",
+    "prettier": "prettier . --check"
+  },
+  "dependencies": {
+    "@bcgov/bc-sans": "^1.0.1",
+    "@headlessui/react": "^2.2.7",
+    "@heroicons/react": "^1.0.5",
+    "@tailwindcss/vite": "^4.1.12",
+    "classnames": "^2.3.1",
+    "i18next": "^25.4.1",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^1.0.10",
+    "prettier": "3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "react": "^19.1.1",
+    "react-countdown": "^2.3.2",
+    "react-dom": "^19.1.1",
+    "react-i18next": "^15.7.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.2"
+  }
 }

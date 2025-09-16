@@ -1,23 +1,22 @@
-import { CharStatus } from '../../lib/statuses'
-import classnames from 'classnames'
+import classnames from "classnames";
+import type { CharStatus } from "../../lib/statuses";
 
 type Props = {
-  value?: string
-  status?: CharStatus
-}
+  value?: string;
+  status?: CharStatus;
+};
 
 export const Cell = ({ value, status }: Props) => {
   const classes = classnames(
-    'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded',
+    "w-14 h-14 flex items-center justify-center mx-0.5 text-lg font-bold rounded uppercase",
     {
-      'bg-white border-slate-200': !status,
-      'border-black': value && !status,
-      'bg-slate-400 text-white border-slate-400': status === 'absent',
-      'bg-purple-500 text-white border-purple-500': status === 'correct',
-      'bg-orange-500 text-white border-orange-500': status === 'present',
-      'cell-animation': !!value,
-    }
-  )
+      "bg-background border-neutral border-solid border-2": !status,
+      "bg-absent": status === "absent",
+      "bg-present": status === "correct",
+      "bg-misplaced": status === "present",
+      "cell-animation": !!value,
+    },
+  );
 
-  return <div className={classes}>{value}</div>
-}
+  return <div className={classes}>{value}</div>;
+};

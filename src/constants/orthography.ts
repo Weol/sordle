@@ -1,59 +1,15 @@
-import { CONFIG } from './config'
+import { CONFIG } from "./config";
 
-export const ORTHOGRAPHY = [
-  'a',
-  'aa',
-  'b',
-  'd',
-  'e',
-  'ee',
-  'g',
-  'g̱',
-  'gw',
-  'gy',
-  'h',
-  'hl',
-  'i',
-  'ii',
-  'j',
-  'k',
-  'ḵ',
-  "k'",
-  "ḵ'",
-  'kw',
-  "kw'",
-  'ky',
-  "ky'",
-  'l',
-  "'l",
-  'm',
-  "'m",
-  'n',
-  "'n",
-  'o',
-  'oo',
-  'p',
-  "p'",
-  's',
-  't',
-  "t'",
-  'ts',
-  "ts'",
-  'u',
-  'uu',
-  'w',
-  "'w",
-  'x',
-  'x̱',
-  'xw',
-  'y',
-  "'y",
-  "'",
-  '?',
-]
+export const ORTHOGRAPHY_LAYOUT = [
+  ["á", "š", "e", "r", "t", "y", "u", "i", "o", "p", "ŋ"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l", "đ", "ŧ"],
+  ["ž", "z", "č", "c", "v", "b", "n", "m"],
+];
 
 if (CONFIG.normalization) {
-  ORTHOGRAPHY.forEach(
-    (val, i) => (ORTHOGRAPHY[i] = val.normalize(CONFIG.normalization))
-  )
+  ORTHOGRAPHY_LAYOUT.forEach((array, i) =>
+    array.forEach((val, j) => (ORTHOGRAPHY_LAYOUT[i][j] = val.normalize(CONFIG.normalization))),
+  );
 }
+
+export const ORTHOGRAPHY = ORTHOGRAPHY_LAYOUT.flat();

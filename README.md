@@ -1,53 +1,69 @@
-# Any-Language Word Guessing Game
+# React + TypeScript + Vite
 
-## Changes in this fork
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-I've adapted this code to allow for simply adapting it to another language. The wordlist and orthography (writing system) here are for the Gitksan language, but this repository is meant to be adapted to other languages. I've also added a script for publishing on GitHub Pages.
+Currently, two official plugins are available:
 
-_Summary of changes_
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Allow letters in the "orthography.ts" to be digraphs or multigraphs (letters that are more than one character)
-- Allow more or less atempts than 6
-- Allow the length of words to be more or less than 5
-- Added a configuration file to define language-specific metadata
-- Added functionality for free deployment to GitHub Pages
-- Dynamically render the keyboard based on the defined orthography
-- Use Unicode normalization by default
-- Use BC Sans open source font to better render Indigenous language orthographies in BC, Canada. See the blog to change the font
-- Complete localization/translateability of the interface using react-i18next
+## Expanding the ESLint configuration
 
-_To adapt for your language (the basics):_
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-1. Change the file in `src/constants/orthography.ts` to use your language's writing system.
-2. Change the file in `src/constants/wordlist.ts` to use your language's words.
-3. Change the file in `src/constants/validGuesses.ts` to include all valid guesses for your language.
-4. Change the file in `src/constants/config.ts` to include meta data about your language. If your language needs words longer or shorter than 5, you can set that in this file and also set the number of tries.
-5. Publish on GitHub Pages by changing the `homepage` key in `package.json` and running `npm run deploy` or just committing to the main branch (and a GitHub workflow will take care of the rest).
+```js
+export default tseslint.config([
+  globalIgnores(["dist"]),
+  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [
+      // Other configs...
 
-For more information, including how to localize the interface to your language, visit the blog article: https://blog.mothertongues.org/word-guessing-game/.
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-The interface is translated by default in English, Kiswahili, Mandarin and Spanish - other translations are very welcome!  To add translations please submit a pull request with the following steps:
-
-1. Add an appropriate localiztion file in `public/locales`
-2. Update the other localization files in `public/locales` to include the additional langauge
-3. Update the `CONFIG.availableLangs` variable in `src/constants/config.ts` to include your language. 
-
-Thanks to Carolyn O'Meara (https://github.com/ckomeara) for providing the Spanish translation.
-Thanks to Haowen Jiang (https://github.com/howard-haowen) for providing the 中文 translation.
-Thanks to Benson Muite (https://github.com/bkmgit) for providing the Kiswahili translation.
-
-_To Run Locally:_
-Clone the repository and perform the following command line actions:
-```bash
-$ cd anylanguage-word-guessing-game
-$ npm install
-$ npm run start
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+]);
 ```
 
-_To build/run docker container:_
-```bash
-$ docker build -t anylanguage-word-guessing-game .
-$ docker run -d -p 3000:3000 anylanguage-word-guessing-game
-```
-open http://localhost:3000 in browser.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
+```js
+// eslint.config.js
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
+
+export default tseslint.config([
+  globalIgnores(["dist"]),
+  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs["recommended-typescript"],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+]);
+```

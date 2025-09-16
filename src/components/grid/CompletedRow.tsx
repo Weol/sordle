@@ -1,12 +1,13 @@
-import { getGuessStatuses } from '../../lib/statuses'
-import { Cell } from './Cell'
+import { getGuessStatuses } from "../../lib/statuses";
+import { Cell } from "./Cell";
 
 type Props = {
-  guess: string[]
-}
+  solution: string;
+  guess: string[];
+};
 
-export const CompletedRow = ({ guess }: Props) => {
-  const statuses = getGuessStatuses(guess)
+export const CompletedRow = ({ solution, guess }: Props) => {
+  const statuses = getGuessStatuses(solution, guess);
 
   return (
     <div className="flex justify-center mb-1">
@@ -14,5 +15,5 @@ export const CompletedRow = ({ guess }: Props) => {
         <Cell key={i} value={letter} status={statuses[i]} />
       ))}
     </div>
-  )
-}
+  );
+};
