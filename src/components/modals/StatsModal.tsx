@@ -7,32 +7,16 @@ import { StatBar } from "../stats/StatBar";
 import { BaseModal } from "./BaseModal";
 
 type Props = {
-  solution: string;
-  solutionIndex: number;
   tomorrow: number;
   isOpen: boolean;
   handleClose: () => void;
   refresh: () => void;
-  guesses: string[][];
   gameStats: GameStats;
   isGameLost: boolean;
   isGameWon: boolean;
-  handleShare: () => void;
 };
 
-export const StatsModal = ({
-  solution,
-  solutionIndex,
-  tomorrow,
-  isOpen,
-  handleClose,
-  refresh,
-  guesses,
-  gameStats,
-  isGameLost,
-  isGameWon,
-  handleShare,
-}: Props) => {
+export const StatsModal = ({ tomorrow, isOpen, handleClose, refresh, gameStats, isGameLost, isGameWon }: Props) => {
   const { t } = useTranslation();
   if (gameStats.totalGames <= 0) {
     return (

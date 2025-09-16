@@ -35,7 +35,7 @@ const loadOrCreateSeed = () => {
 
 const App: React.FC<WithTranslation> = ({ t }) => {
   const [seed, setSeed] = useState<number>(loadOrCreateSeed());
-  const { isWinningWord, isWordInWordList, solution, solutionIndex, tomorrow } = useWords(seed);
+  const { isWinningWord, isWordInWordList, solution, tomorrow } = useWords(seed);
   const wordLength = solution.length;
   const [currentGuess, setCurrentGuess] = useState<Array<string>>([]);
   const [isGameWon, setIsGameWon] = useState(false);
@@ -159,20 +159,13 @@ const App: React.FC<WithTranslation> = ({ t }) => {
       <SettingsModal isOpen={isI18nModalOpen} handleClose={() => setIsI18nModalOpen(false)} />
       <InfoModal isOpen={isInfoModalOpen} handleClose={() => setIsInfoModalOpen(false)} />
       <StatsModal
-        solution={solution}
-        solutionIndex={solutionIndex}
         tomorrow={tomorrow}
         isOpen={isStatsModalOpen}
         handleClose={() => setIsStatsModalOpen(false)}
-        guesses={guesses}
         gameStats={stats}
         isGameLost={isGameLost}
         isGameWon={isGameWon}
         refresh={refreshSeed}
-        handleShare={() => {
-          setSuccessAlert(t("gameCopied"));
-          return setTimeout(() => setSuccessAlert(""), ALERT_TIME_MS);
-        }}
       />
 
       <Alert message={t("notEnoughLetters")} isOpen={isNotEnoughLetters} />
